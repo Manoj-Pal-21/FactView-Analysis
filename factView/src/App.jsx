@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { celibrities } from './celebrities';
 import UserList from './components/UserList';
 import { CiSearch } from "react-icons/ci";
-
+import ConfirmationDialog from './components/ConfirmationDialog';
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -10,6 +10,8 @@ const App = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(null);
 
   useEffect(() => {
     setUsers(celibrities);
@@ -46,10 +48,22 @@ const App = () => {
   };
 
   const handleDeleteClick = (index) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      const updatedUsers = users.filter((_, i) => i !== index);
+    setDeleteIndex(index);
+    setDialogOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (deleteIndex !== null) {
+      const updatedUsers = users.filter((_, i) => i !== deleteIndex);
       setUsers(updatedUsers);
+      setDeleteIndex(null);
+      setDialogOpen(false);
     }
+  };
+
+  const cancelDelete = () => {
+    setDeleteIndex(null);
+    setDialogOpen(false);
   };
 
   const handleFieldChange = (event) => {
@@ -96,6 +110,12 @@ const App = () => {
         handleDeleteClick={handleDeleteClick}
         handleFieldChange={handleFieldChange}
         isAdult={isAdult}
+      />
+
+      <ConfirmationDialog
+        isOpen={dialogOpen}
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
       />
     </div>
   );

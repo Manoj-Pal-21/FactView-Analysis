@@ -1,7 +1,6 @@
 import React from 'react';
 import { MdOutlineCancel, MdCheckCircleOutline } from "react-icons/md";
 
-
 const UserEditForm = ({
     editingUser,
     handleSaveClick,
@@ -20,18 +19,17 @@ const UserEditForm = ({
                         name="age"
                         value={editingUser.age || ''}
                         onChange={handleFieldChange}
-                        className="border rounded p-2"
+                        className="border rounded-md p-2"
                         readOnly
                     />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-gray-500">Gender</label>
-
                     <select
                         name="gender"
                         value={editingUser.gender || ''}
                         onChange={handleFieldChange}
-                        className="border rounded p-2"
+                        className="border rounded-md p-2"
                     >
                         <option value="">Select Gender</option>
                         {genderOptions.map(option => (
@@ -46,7 +44,7 @@ const UserEditForm = ({
                         name="country"
                         value={editingUser.country || ''}
                         onChange={handleFieldChange}
-                        className="border rounded p-2"
+                        className="border rounded-md p-2"
                     />
                 </div>
             </div>
@@ -56,7 +54,7 @@ const UserEditForm = ({
                     name="description"
                     value={editingUser.description || ''}
                     onChange={handleFieldChange}
-                    className="border rounded p-2 w-full"
+                    className="border rounded-md p-2 w-full"
                     rows="4"
                 />
             </div>
@@ -73,7 +71,6 @@ const UserEditForm = ({
                 >
                     <MdCheckCircleOutline size={20} />
                 </button>
-
             </div>
         </form>
     );
