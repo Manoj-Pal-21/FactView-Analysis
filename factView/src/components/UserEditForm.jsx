@@ -19,7 +19,7 @@ const UserEditForm = ({
                         name="age"
                         value={editingUser.age || ''}
                         onChange={handleFieldChange}
-                        className="border rounded-md p-2"
+                        className="border rounded-lg p-2"
                         readOnly
                     />
                 </div>
@@ -29,7 +29,7 @@ const UserEditForm = ({
                         name="gender"
                         value={editingUser.gender || ''}
                         onChange={handleFieldChange}
-                        className="border rounded-md p-2"
+                        className="border rounded-lg p-2"
                     >
                         <option value="">Select Gender</option>
                         {genderOptions.map(option => (
@@ -44,7 +44,7 @@ const UserEditForm = ({
                         name="country"
                         value={editingUser.country || ''}
                         onChange={handleFieldChange}
-                        className="border rounded-md p-2"
+                        className="border rounded-lg p-2"
                     />
                 </div>
             </div>
@@ -54,22 +54,22 @@ const UserEditForm = ({
                     name="description"
                     value={editingUser.description || ''}
                     onChange={handleFieldChange}
-                    className="border rounded-md p-2 w-full"
+                    className="border rounded-lg p-2 w-full"
                     rows="4"
                 />
             </div>
-            <div className="flex justify-end space-x-2">
+            <div className="flex justify-end space-x-4">
                 <button
                     onClick={handleCancelClick}
                     className="text-red-500 hover:text-red-700"
                 >
-                    <MdOutlineCancel size={20} />
+                    <MdOutlineCancel size={25} />
                 </button>
                 <button
                     onClick={handleSaveClick}
                     className="text-green-500 hover:text-yellow-700"
                 >
-                    <MdCheckCircleOutline size={20} />
+                    <MdCheckCircleOutline size={25} />
                 </button>
             </div>
         </form>

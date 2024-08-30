@@ -94,7 +94,7 @@ const App = () => {
           placeholder="Search User"
           value={searchTerm}
           onChange={handleSearchChange}
-          className="border p-2 pl-10 mb-4 w-full rounded-md"
+          className="border border-gray-300 p-2 pl-10 mb-4 w-full rounded-md"
         />
       </div>
 

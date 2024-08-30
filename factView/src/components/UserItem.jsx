@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
+import { GoChevronUp, GoChevronDown } from "react-icons/go";
 import UserEditForm from './UserEditForm';
 import UserDetails from './UserDetails';
 
@@ -18,7 +18,7 @@ const UserItem = ({
     isAdult
 }) => {
     return (
-        <div key={user.id} className="mb-2 p-4 border rounded">
+        <div key={user.id} className="mb-2 p-4 border border-gray-300 rounded-lg">
             <div
                 className={`cursor-pointer flex items-center justify-between`}
                 onClick={() => handleAccordionClick(index)}
@@ -31,7 +31,7 @@ const UserItem = ({
                     </div>
                 </div>
                 <div>
-                    {expandedIndex === index ? <FaAngleUp /> : <FaAngleDown />}
+                    {expandedIndex === index ? <GoChevronUp /> : <GoChevronDown />}
                 </div>
             </div>
 

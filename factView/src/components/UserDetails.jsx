@@ -30,23 +30,23 @@ const UserDetails = ({ user, isAdult, handleEditClick, handleDeleteClick }) => {
                 <span className="text-gray-500">Description</span>
                 <p>{user.description}</p>
             </div>
-            <div className="flex justify-end space-x-2">
-
+            <div className="flex justify-end space-x-4">
                 <button
                     onClick={handleDeleteClick}
                     className="text-red-500 hover:text-red-700"
                 >
-                    <MdDelete size={20} />
+                    <MdDelete size={25} />
                 </button>
                 {isAdult(user.dob) && (
                     <button
                         onClick={handleEditClick}
                         className="text-blue-500 hover:text-blue-700"
                     >
-                        <MdEdit size={20} />
+                        <MdEdit size={25} />
                     </button>
                 )}
             </div>
+
         </div>
     );
 };
