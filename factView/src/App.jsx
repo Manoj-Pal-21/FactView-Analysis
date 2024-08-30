@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { celibrities } from './celebrities';
-import UserList from './components/UserList';
+import React, { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
+import UserList from './components/UserList';
 import ConfirmationDialog from './components/ConfirmationDialog';
+import { isAdult, calculateAge } from './utils/dateUtils';
+import useUsers from './hooks/useUsers';
 
 const App = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useUsers();
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteIndex, setDeleteIndex] = useState(null);
-
-  useEffect(() => {
-    setUsers(celibrities);
-  }, []);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -30,15 +27,15 @@ const App = () => {
   const handleEditClick = (index) => {
     if (!isAdult(users[index]?.dob)) return;
     const userToEdit = users[index];
-    const age = calculateAge(userToEdit.dob);
-    setEditingUser({ ...userToEdit, age });
+    setEditingUser({ ...userToEdit });
     setEditIndex(index);
   };
 
   const handleSaveClick = () => {
     if (!editingUser) return;
     const updatedUsers = [...users];
-    updatedUsers[editIndex] = { ...editingUser };
+    const age = calculateAge(editingUser.dob);
+    updatedUsers[editIndex] = { ...editingUser, age };
     setUsers(updatedUsers);
     setEditIndex(null);
     setEditingUser(null);
@@ -78,20 +75,6 @@ const App = () => {
       return updatedUser;
     });
   };
-  
-
-  const isAdult = (dob) => {
-    const birthDate = new Date(dob);
-    const age = new Date().getFullYear() - birthDate.getFullYear();
-    return age >= 18;
-  };
-
-  const calculateAge = (dob) => {
-    const birthDate = new Date(dob);
-    const ageDifMs = Date.now() - birthDate.getTime();
-    const ageDate = new Date(ageDifMs);
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };  
 
   const filteredUsers = users.filter(user =>
     `${user.first} ${user.last}`.toLowerCase().includes(searchTerm.toLowerCase())

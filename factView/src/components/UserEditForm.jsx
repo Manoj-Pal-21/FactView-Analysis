@@ -20,11 +20,11 @@ const UserEditForm = ({
     <form className="p-4">
       <div className="mb-4 grid grid-cols-3 gap-x-8">
         <div className="flex flex-col">
-          <label className="text-gray-500">Age</label>
+          <label className="text-gray-500">Date of Birth</label>
           <input
-            type="number"
-            name="age"
-            value={editingUser.age || ''}
+            type="date"
+            name="dob"
+            value={editingUser.dob || ''}
             onChange={handleInputChange}
             className="border rounded-lg p-2"
           />
