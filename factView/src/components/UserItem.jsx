@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaAngleUp, FaAngleDown  } from "react-icons/fa6";
+import { FaAngleUp, FaAngleDown } from "react-icons/fa6";
 import UserEditForm from './UserEditForm';
 import UserDetails from './UserDetails';
 
@@ -18,9 +18,9 @@ const UserItem = ({
     isAdult
 }) => {
     return (
-        <div key={user.id} className="mb-2">
+        <div key={user.id} className="mb-2 p-4 border rounded">
             <div
-                className={`p-4 border rounded cursor-pointer flex items-center justify-between ${expandedIndex === index ? 'bg-gray-100' : ''}`}
+                className={`cursor-pointer flex items-center justify-between`}
                 onClick={() => handleAccordionClick(index)}
             >
                 <div className="flex items-center">
@@ -36,7 +36,7 @@ const UserItem = ({
             </div>
 
             {expandedIndex === index && (
-                <div className="p-4 border rounded mt-2">
+                <div className="mt-2">
                     {editIndex === index ? (
                         <UserEditForm
                             editingUser={editingUser}

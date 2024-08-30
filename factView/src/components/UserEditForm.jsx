@@ -1,56 +1,81 @@
 import React from 'react';
+import { MdOutlineCancel, MdCheckCircleOutline } from "react-icons/md";
 
-const UserEditForm = ({ editingUser, handleSaveClick, handleCancelClick, handleFieldChange }) => {
+
+const UserEditForm = ({
+    editingUser,
+    handleSaveClick,
+    handleCancelClick,
+    handleFieldChange
+}) => {
+    const genderOptions = ['Male', 'Female', 'Other'];
+
     return (
-        <div>
-            <label>
-                Country:
-                <input
-                    type="text"
-                    name="country"
-                    value={editingUser.country}
-                    onChange={handleFieldChange}
-                    className="border p-2 w-full"
-                />
-            </label>
-            <label>
-                Description:
+        <form className="p-4">
+            <div className="mb-4 grid grid-cols-3 gap-x-8">
+                <div className="flex flex-col">
+                    <label className="text-gray-500">Age</label>
+                    <input
+                        type="number"
+                        name="age"
+                        value={editingUser.age || ''}
+                        onChange={handleFieldChange}
+                        className="border rounded p-2"
+                        readOnly
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-500">Gender</label>
+
+                    <select
+                        name="gender"
+                        value={editingUser.gender || ''}
+                        onChange={handleFieldChange}
+                        className="border rounded p-2"
+                    >
+                        <option value="">Select Gender</option>
+                        {genderOptions.map(option => (
+                            <option key={option} value={option}>{option}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-500">Country</label>
+                    <input
+                        type="text"
+                        name="country"
+                        value={editingUser.country || ''}
+                        onChange={handleFieldChange}
+                        className="border rounded p-2"
+                    />
+                </div>
+            </div>
+            <div className="mb-4">
+                <label className="text-gray-500">Description</label>
                 <textarea
                     name="description"
-                    value={editingUser.description}
+                    value={editingUser.description || ''}
                     onChange={handleFieldChange}
-                    className="border p-2 w-full"
+                    className="border rounded p-2 w-full"
+                    rows="4"
                 />
-            </label>
-            <label>
-                Gender:
-                <select
-                    name="gender"
-                    value={editingUser.gender}
-                    onChange={handleFieldChange}
-                    className="border p-2 w-full"
+            </div>
+            <div className="flex justify-end space-x-2">
+                <button
+                    onClick={handleCancelClick}
+                    className="text-red-500 hover:text-red-700"
                 >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="transgender">Transgender</option>
-                    <option value="rather not say">Rather not say</option>
-                    <option value="other">Other</option>
-                </select>
-            </label>
-            <button
-                onClick={handleSaveClick}
-                disabled={!editingUser}
-                className="bg-blue-500 text-white px-4 py-2 mt-2"
-            >
-                Save
-            </button>
-            <button
-                onClick={handleCancelClick}
-                className="bg-gray-500 text-white px-4 py-2 mt-2 ml-2"
-            >
-                Cancel
-            </button>
-        </div>
+                    <MdOutlineCancel size={20} />
+                </button>
+                <button
+                    onClick={handleSaveClick}
+                    className="text-green-500 hover:text-yellow-700"
+                >
+                    <MdCheckCircleOutline size={20} />
+                </button>
+
+            </div>
+        </form>
     );
 };
 
