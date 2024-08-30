@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { celibrities } from './celebrities';
 import UserList from './components/UserList';
+import { CiSearch } from "react-icons/ci";
+
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -69,13 +71,18 @@ const App = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Celebrity List</h1>
 
-      <input
-        type="text"
-        placeholder="Search by name"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className="border p-2 mb-4 w-full"
-      />
+      <div className="relative w-full">
+        <CiSearch
+          className="absolute top-1/3 left-3 transform -translate-y-1/3 h-5 w-5 text-gray-500"
+        />
+        <input
+          type="text"
+          placeholder="Search User"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border p-2 pl-10 mb-4 w-full rounded-md"
+        />
+      </div>
 
       <UserList
         users={filteredUsers}
