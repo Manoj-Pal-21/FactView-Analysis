@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdOutlineCancel, MdCheckCircleOutline } from "react-icons/md";
 
 const UserEditForm = ({
@@ -7,6 +7,13 @@ const UserEditForm = ({
   handleCancelClick,
   handleFieldChange
 }) => {
+  const [isEdited, setIsEdited] = useState(false);
+
+  const handleInputChange = (event) => {
+    setIsEdited(true);
+    handleFieldChange(event);
+  };
+
   const genderOptions = ['Male', 'Female', 'Transgender', 'Rather not say', 'Other'];
 
   return (
@@ -18,7 +25,7 @@ const UserEditForm = ({
             type="number"
             name="age"
             value={editingUser.age || ''}
-            onChange={handleFieldChange}
+            onChange={handleInputChange}
             className="border rounded-lg p-2"
           />
         </div>
@@ -27,7 +34,7 @@ const UserEditForm = ({
           <select
             name="gender"
             value={editingUser.gender || ''}
-            onChange={handleFieldChange}
+            onChange={handleInputChange}
             className="border rounded-lg p-2"
           >
             <option value="">Select Gender</option>
@@ -42,7 +49,7 @@ const UserEditForm = ({
             type="text"
             name="country"
             value={editingUser.country || ''}
-            onChange={handleFieldChange}
+            onChange={handleInputChange}
             className="border rounded-lg p-2"
           />
         </div>
@@ -52,7 +59,7 @@ const UserEditForm = ({
         <textarea
           name="description"
           value={editingUser.description || ''}
-          onChange={handleFieldChange}
+          onChange={handleInputChange}
           className="border rounded-lg p-2 w-full"
           rows="4"
         />
@@ -66,7 +73,8 @@ const UserEditForm = ({
         </button>
         <button
           onClick={handleSaveClick}
-          className="text-green-500 hover:text-green-700"
+          className={`text-green-500 hover:text-green-700 ${!isEdited ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={!isEdited}
         >
           <MdCheckCircleOutline size={25} />
         </button>
