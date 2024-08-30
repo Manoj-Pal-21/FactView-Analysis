@@ -1,7 +1,6 @@
 import React from 'react';
 import { MdEdit, MdDelete } from "react-icons/md";
 
-
 const UserDetails = ({ user, isAdult, handleEditClick, handleDeleteClick }) => {
     const calculateAge = (dob) => {
         const birthDate = new Date(dob);
@@ -46,7 +45,6 @@ const UserDetails = ({ user, isAdult, handleEditClick, handleDeleteClick }) => {
                     </button>
                 )}
             </div>
-
         </div>
     );
 };

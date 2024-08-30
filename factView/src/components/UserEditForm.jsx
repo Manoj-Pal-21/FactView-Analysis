@@ -7,7 +7,7 @@ const UserEditForm = ({
     handleCancelClick,
     handleFieldChange
 }) => {
-    const genderOptions = ['Male', 'Female', 'Other'];
+    const genderOptions = ['Male', 'Female', 'Transgender', 'Rather not say', 'Other'];
 
     return (
         <form className="p-4">
@@ -20,7 +20,6 @@ const UserEditForm = ({
                         value={editingUser.age || ''}
                         onChange={handleFieldChange}
                         className="border rounded-lg p-2"
-                        readOnly
                     />
                 </div>
                 <div className="flex flex-col">
@@ -67,7 +66,7 @@ const UserEditForm = ({
                 </button>
                 <button
                     onClick={handleSaveClick}
-                    className="text-green-500 hover:text-yellow-700"
+                    className="text-green-500 hover:text-green-700"
                 >
                     <MdCheckCircleOutline size={25} />
                 </button>

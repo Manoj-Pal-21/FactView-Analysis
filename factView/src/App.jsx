@@ -28,9 +28,11 @@ const App = () => {
   };
 
   const handleEditClick = (index) => {
-    if (!isAdult(users[index].dob)) return;
+    if (!isAdult(users[index]?.dob)) return;
+    const userToEdit = users[index];
+    const age = calculateAge(userToEdit.dob);
+    setEditingUser({ ...userToEdit, age });
     setEditIndex(index);
-    setEditingUser({ ...users[index] });
   };
 
   const handleSaveClick = () => {
@@ -68,7 +70,13 @@ const App = () => {
 
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
-    setEditingUser(prev => ({ ...prev, [name]: value }));
+    setEditingUser(prev => {
+      const updatedUser = { ...prev, [name]: value };
+      if (name === 'dob') {
+        updatedUser.age = calculateAge(value);
+      }
+      return updatedUser;
+    });
   };
 
   const isAdult = (dob) => {
@@ -76,6 +84,15 @@ const App = () => {
     const age = new Date().getFullYear() - birthDate.getFullYear();
     return age >= 18;
   };
+
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const ageDifMs = Date.now() - birthDate.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  };
+
+  console.log(editingUser,"editingUser")
 
   const filteredUsers = users.filter(user =>
     `${user.first} ${user.last}`.toLowerCase().includes(searchTerm.toLowerCase())
