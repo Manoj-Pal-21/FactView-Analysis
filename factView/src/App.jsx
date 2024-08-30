@@ -78,6 +78,7 @@ const App = () => {
       return updatedUser;
     });
   };
+  
 
   const isAdult = (dob) => {
     const birthDate = new Date(dob);
@@ -90,9 +91,7 @@ const App = () => {
     const ageDifMs = Date.now() - birthDate.getTime();
     const ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
-  };
-
-  console.log(editingUser,"editingUser")
+  };  
 
   const filteredUsers = users.filter(user =>
     `${user.first} ${user.last}`.toLowerCase().includes(searchTerm.toLowerCase())
