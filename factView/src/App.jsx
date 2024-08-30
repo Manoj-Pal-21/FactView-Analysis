@@ -82,7 +82,7 @@ const App = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Celebrity List</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Celebrity List</h1>
 
       <div className="relative w-full">
         <CiSearch
