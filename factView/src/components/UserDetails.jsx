@@ -14,7 +14,7 @@ const UserDetails = ({ user, isAdult, handleEditClick, handleDeleteClick }) => {
             <div className="mb-4 grid grid-cols-3 gap-x-8">
                 <div className="flex flex-col">
                     <span className="text-gray-500">Age</span>
-                    <span>{calculateAge(user.dob)} years</span>
+                    <span>{user.age ? user.age : calculateAge(user.dob)} years</span>
                 </div>
                 <div className="flex flex-col">
                     <span className="text-gray-500">Gender</span>
