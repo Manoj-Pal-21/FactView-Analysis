@@ -18,25 +18,25 @@ const UserItem = ({
     isAdult
 }) => {
     return (
-        <div key={user.id} className="mb-2 p-4 border border-gray-300 rounded-lg">
+        <div key={user.id} className="mb-4 p-4 border border-gray-300 rounded-lg">
             <div
                 className={`cursor-pointer flex items-center justify-between`}
                 onClick={() => handleAccordionClick(index)}
             >
-                <div className="flex items-center">
-                    <img src={user.picture} alt={user.first} className="w-12 h-12 rounded-full mr-4" />
+                <div className="flex items-center space-x-4 md:space-x-6">
+                    <img src={user.picture} alt={user.first} className="w-12 h-12 rounded-full md:w-16 md:h-16" />
                     <div>
-                        <h2 className="text-xl font-semibold">{user.first} {user.last}</h2>
-                        <p>{user.email}</p>
+                        <h2 className="text-lg md:text-xl font-semibold">{user.first} {user.last}</h2>
+                        <p className="text-sm md:text-base">{user.email}</p>
                     </div>
                 </div>
                 <div>
-                    {expandedIndex === index ? <GoChevronUp /> : <GoChevronDown />}
+                    {expandedIndex === index ? <GoChevronUp className="text-xl md:text-2xl" /> : <GoChevronDown className="text-xl md:text-2xl" />}
                 </div>
             </div>
 
             {expandedIndex === index && (
-                <div className="mt-2">
+                <div className="mt-4">
                     {editIndex === index ? (
                         <UserEditForm
                             editingUser={editingUser}
