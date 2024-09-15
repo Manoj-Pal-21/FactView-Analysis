@@ -1,13 +1,8 @@
 import React from 'react';
 import { MdEdit, MdDelete } from "react-icons/md";
+import { calculateAge } from '../utils/dateUtils';
 
 const UserDetails = ({ user, isAdult, handleEditClick, handleDeleteClick }) => {
-    const calculateAge = (dob) => {
-        const birthDate = new Date(dob);
-        const ageDifMs = Date.now() - birthDate.getTime();
-        const ageDate = new Date(ageDifMs);
-        return Math.abs(ageDate.getUTCFullYear() - 1970);
-    };
 
     return (
         <div className="p-4">
